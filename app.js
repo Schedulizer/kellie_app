@@ -9,7 +9,7 @@ var Strategy      = require('passport-local').Strategy;
 var passport      = require('passport');
 var db            = require('./config/db');
 var app           = express();
-
+var instructorsList  = require('./routes/instructor');
 
 //this is the nodemailer require
 var nodemailer = require("nodemailer");
@@ -67,6 +67,8 @@ app.use('/profile', function(req, res, next) {
 app.use('/login2', function(req, res, next) {
   res.render('login2');
 });
+
+
 
 app.use('/users/restricted', function(req, res, next) {
   res.render('restricted', { title: 'Project 3' });

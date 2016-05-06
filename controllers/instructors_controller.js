@@ -1,7 +1,7 @@
 var instructorController = {};
 var instructor = require('../models/instructor');
 var passport = require('passport');
-require('../config/passport')(passport)
+require('../config/passport')(passport);
 
 instructorController.index = function(req, res) {
    Instructor.find({}, function(err, instructors) {
