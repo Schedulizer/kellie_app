@@ -23,7 +23,7 @@ router.post('/', function(req, res, next){
   });
 });
 
-router.get('/users/calendar/feed', function(req, res, next){
+router.get('/feed', function(req, res, next){
   Event.find({})
     .then(function(events){
       res.json(events);

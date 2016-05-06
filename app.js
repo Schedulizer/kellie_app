@@ -51,8 +51,8 @@ var userRoutes      = require('./routes/user');
 app.get('/', function(req, res, next) {
   res.render('index', { title: 'Project 3' });
 });
-app.use('/users', userRoutes);
 app.use('/users/calendar', calendarRoute);
+app.use('/users', userRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
