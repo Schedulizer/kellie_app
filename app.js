@@ -16,9 +16,6 @@ var instructorsList  = require('./routes/instructor');
 var nodemailer = require("nodemailer");
 var nodemailerserver =require('./server.js');
 
-var calendarRoute   = require('./routes/calendar');
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
