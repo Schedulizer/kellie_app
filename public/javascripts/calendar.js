@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#calendar').fullCalendar({
 
       events: {
-        url: "/calendar/feed",
+        url: "/users/calendar/feed",
         type: "GET",
         color: "blue"
       },
@@ -15,19 +15,12 @@ $(document).ready(function() {
         console.log(data);
         $.ajax({
           type: "POST",
-          url: "/calendar",
+          url: "/users/calendar",
           data: {title: text, start: data.date}
         }).done(function(response){
           $('#calendar').fullCalendar( 'refetchEvents' );
           console.log(response);
         });
-        // eventClick: function(event, element) {
-
-        // event.title = "CLICKED!";
-
-        // $('#calendar').fullCalendar('updateEvent', event);
-
-        // }
       }
     });
 });
