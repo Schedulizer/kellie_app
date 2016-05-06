@@ -1,7 +1,7 @@
 var instructorController = {};
 var instructor = require('../models/instructor');
 var passport = require('passport');
-require('../config/passport')(passport)
+require('../config/passport')(passport);
 
 instructorController.index = function(req, res) {
    Instructor.find({}, function(err, instructors) {
@@ -33,9 +33,6 @@ instructorController.getLogin = function(request, response) {
   response.render('login2.ejs', { message: request.flash('loginMessage') });
 };
 
-// instructorController.getLogin2 = function(request, response) {
-//   response.render('login2.ejs', { message: request.flash('loginMessage') });
-// };
 
 instructorController.postLogin = function(request, response) {
   var loginProperty = passport.authenticate('local-login', {
@@ -51,6 +48,7 @@ instructorController.getLogout = function(request, response) {
   request.logout();
   response.redirect('/');
 };
+
 instructorController.update = function(req, res) {};
 
 instructorController.show = function(req, res) {};

@@ -24,7 +24,15 @@ router.route('/login')
 router.route('/logout')
   .get(userController.getLogout);
 
+router.route('/restricted')
+  .get(function(req, res, next) {
+    res.render('restricted', { title: 'Project 3' });
+  });
 
+router.route('/profile')
+  .get(function(req, res, next) {
+    res.render('profile', { title: 'Project 3'});
+  });
 
 
 module.exports = router;

@@ -8,17 +8,13 @@ var session       = require('express-session');
 var Strategy      = require('passport-local').Strategy;
 var passport      = require('passport');
 var db            = require('./config/db');
+var flash         = require('connect-flash');
 var app           = express();
-
+var instructorsList  = require('./routes/instructor');
 
 //this is the nodemailer require
 var nodemailer = require("nodemailer");
 var nodemailerserver =require('./server.js');
-
-var calendarRoute   = require('./routes/calendar');
-
-var flash         = require('connect-flash');
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,42 +43,16 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 app.use(passport.initialize());
 app.use(passport.session());
 
-var userRoutes = require('./routes/user');
-app.use('/users', userRoutes);
+
+// Routes
+var calendarRoute   = require('./routes/calendar');
+var userRoutes      = require('./routes/user');
 
 app.get('/', function(req, res, next) {
   res.render('index', { title: 'Project 3' });
 });
-
-
-app.use('/users/calendar', function(req, res, next) {
-  res.render('calendar', { title: 'Project 3' });
-});
-
-app.use('/profile', function(req, res, next) {
-  res.render('profile', { title: 'Project 3'});
-});
-
-
-app.use('/login2', function(req, res, next) {
-  res.render('login2');
-});
-
-app.use('/users/restricted', function(req, res, next) {
-  res.render('restricted', { title: 'Project 3' });
-});
-// app.use('/', routes);
-// app.use('/instructors', instructors);
-// app.use('/producers', producers);
-// app.use('/producerslogin', producerslogin);
-// app.get('/producerslogin',
-  // function(req, res){
-    // res.render('login');
-  // });
-//
-// app.listen(port, function(){
-//   console.log("Listening on port " + port);
-// });
+app.use('/users/calendar', calendarRoute);
+app.use('/users', userRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
