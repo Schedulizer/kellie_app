@@ -12,7 +12,7 @@
  
  ### Heroku Deployment
  
- https://kellie-app.heroku.com
+ www.kellie-app.heroku.com
  
  ### Trello Board
  
