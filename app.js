@@ -10,6 +10,14 @@ var passport      = require('passport');
 var db            = require('./config/db');
 var flash         = require('connect-flash');
 var app           = express();
+var instructorsList  = require('./routes/instructor');
+
+//this is the nodemailer require
+var nodemailer = require("nodemailer");
+var nodemailerserver =require('./server.js');
+
+var calendarRoute   = require('./routes/calendar');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

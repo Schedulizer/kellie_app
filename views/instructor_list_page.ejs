@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- / Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+  <title>
+   <H2>Producer invite email page </H2>
+
+
+ </title>
+ <link rel="/public/style.css" type="text/css" href="">
+ <!-- <script src="/js/jsmain.js" type="text/javascript" charset="utf-8" async defer></script> -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+ <!-- this is a script for the nodemailer to run -->
+
+ <style type="text/css">
+
+ #invite-btn {
+  width: 175px;
+
+ }
+
+ </style>
+
+ <script>
+// this is the custom form send function
+  $(document).ready(function(){
+
+    console.log("document ready function enabled");
+//adding the document ready function
+        //var from,to,subject,text;
+//make the to subject text var?
+$("#send_email").click(function(){
+  console.log("send_email button pressed");
+//on send_email button click do this function
+var to=$("#to").val();
+// save the variable to from the #to box
+console.log("to:"+to);
+var  subject=$("#subject").val();
+//save the subject var from the #subject box
+console.log("subject: "+subject);
+var  text=$("#content").val();
+// set the var text
+console.log("body text: "+text);
+$("#message").text("Sending E-mail...Please wait");
+//set the message text to sending email?
+
+$.get("/sendemail",{to:to,subject:subject,text:text},function(data){
+// get route to /send - sending to,subject,text, callback function data
+if(data=="sent")
+{
+  $("#message").empty().html("Email is been sent at "+to+" . Please check inbox !");
+}
+});
+
+});
+
+
+
+
+//this is the test button to see if the route can be reached
+$( "#test_emailer_button" ).click(function() {
+  console.log("test button pressed");
+  $.get("/send",function(data){
+              // get route to /send - sending to,subject,text, callback function data
+              if(data=="sent")
+              {
+                $("#test_emailer_message").empty().html("Route has been ran for test email");
+              }
+            });
+
+});
+});
+
+
+</script>
+
+</head>
+
+
+<body>
+  <div class="container">
+
+
+   <h2> Instructor Select and Email </h2>
+
+  <br>
+  <br>
+<div class="row" style="margin-top: 15px">
+       <p class="Title col-xs-3">Instructor Name </p>
+       <p class ="emailtitle col-xs-3">Profitability</p>
+       <p class ="profittitle col-xs-3">Email</p>
+       <p class ="buttoncoltitle col-xs-3">Send invite time/app</p>
+     </div>
+   <ul>
+     <% for(var i=0; i < instructorslist.length; i++) { %>
+
+     <div class="row" style="margin-top: 15px">
+       <p class="Instructor col-xs-3"><%= instructorslist[i].name %> </p>
+       <p class="Instructor col-xs-3"><%= instructorslist[i].profit %> </p>
+       <p class ="Instructor email col-xs-3"><%= instructorslist[i].email %></p>
+       <a class="btn btn-success btn-sm col-xs-3" id="invite-btn" href="/send/<%= instructorslist[i].id %>">Invite <%= instructorslist[i].name %></a>
+     </div>
+
+    <% }; %>
+
+  </ul>
+
+ <!--   <div>
+    <h1>Custom Email form</h1>
+    <input id="to" type="text" placeholder="Enter E-mail ID where you want to send" />
+    <input id="subject" type="text" placeholder="Write Subject" />
+    <textarea id="content" cols="40" rows="5" placeholder="Write what you want to send"></textarea>
+    <button id="send_email">Send Email</button>
+    <span id="message"></span>
+  </div> -->
+
+    <h1 >Custom Email Form</h1>
+    <span id="message">Enter info here to send a custom message to an email</span>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input id="to" type="text" placeholder="Enter E-mail ID where you want to send">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input id="subject" type="text" placeholder="Write Subject">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Subject</label>
+        <div class="col-sm-10">
+          <textarea id="content" cols="40" rows="5" placeholder="Write what you want to send"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default" id="send_email">Sign in</button>
+        </div>
+      </div>
+      <!-- <span id="message"></span> -->
+    </form>
+
+
+
+
+=======
+ This the page where the producers will be able select the producers to email to
+<br>
+<br>
+        <% for(var i=0; i < instructors.length; i++) { %>
+            <div class="col-sm-6 col-md-3 set-height">
+                <li class="Instructor"><%= instructors[i].name %> - <a href="/send/<%= instructors[i].id %>"><%= instructors[i].email %></a> - <button id="instructorbutton">Send Email <%= instructors[i].email %></button>
+                </li>
+                  <% }; %>
+
+                  <br>
+                  <button id="test_emailer_button">This is a singular test button going to the send route of the invite email</button><br><span id="test_emailer_message"></span></li>
+                  <br>
+
+Node.JS Email application part
+<div>
+<h1>Mailer In Node.JS</h1>
+<input id="to" type="text" placeholder="Enter E-mail ID where you want to send" />
+<input id="subject" type="text" placeholder="Write Subject" />
+<textarea id="content" cols="40" rows="5" placeholder="Write what you want to send"></textarea>
+<button id="send_email">Send Email</button>
+<span id="message"></span>
+
+</div>
+</body>
+
+
+</html>

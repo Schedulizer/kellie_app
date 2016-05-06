@@ -26,7 +26,8 @@ router.post('/', function(req, res, next){
 });
 
 //routes/calendar.js
-router.get('/feed', function(req, res, next){
+
+router.get('/users/calendar/feed', function(req, res, next){
   Event.find({})
     .then(function(events){
       res.json(events);
@@ -79,4 +80,3 @@ router.get('/feed', function(req, res, next){
 
 
 module.exports = router;
-

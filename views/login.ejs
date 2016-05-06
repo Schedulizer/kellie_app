@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>Producer Login</title>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 </head>
-<h1>Producer Login</h1>
+
 <body>
+    <% include ./partials/header %>
+
+    <div class="jumbotron">
+  <h1>Producer Login</h1>
+
+
     <form action="/users/login" method="post">
       <div>
       <label>Username:</label>
@@ -17,6 +35,16 @@
       <label>Password:</label>
       <input type="password" name="password"/>
       </div>
+
+
+      <div class = "shake-rotate">
+      <input class="btn btn-primary btn-lg" type="submit" value="Submit"/>
+      </div>
+
+    </form>
+    </div>
+
+
       <div>
       <input type="submit" value="Submit"/>
       </div>
@@ -24,5 +52,6 @@
         <br>
         <a href="/users/calendar"> View Calendar </a>
     </form>
+
 </body>
 </html>

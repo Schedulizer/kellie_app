@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Producer's Calendar</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/fullCalendar/fullcalendar.css' />
 
@@ -12,20 +15,21 @@
 
     // page is now ready, initialize the calendar...
 
+    $('#calendar').fullCalendar({
+    dayClick: function() {
+        alert('a day has been clicked!');
+     }
 
+  });
 
 
 });</script>
   </head>
   <body>
-    <h1>Instructor's Calendar</h1>
+    <h1>Instructor Time Slots</h1>
     <div id='calendar'></div>
-    <h1>whatever</h1>
     <br>
-  <div class=Instructor>
-    <p> Instructor Login </p>
-  </div>
-    <br>
-    <p>Splashpage goes here</p>
+  <div class='producer'>
+
   </body>
 </html>

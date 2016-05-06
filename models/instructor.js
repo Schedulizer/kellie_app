@@ -22,3 +22,4 @@ instructorSchema.methods.encrypt = function(password) {
 var Instructor = mongoose.model('Instructor', instructorSchema);
 
 module.exports = Instructor;
+

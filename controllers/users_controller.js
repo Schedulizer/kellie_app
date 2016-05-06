@@ -22,7 +22,7 @@ userController.new = function(req, res) {
 userController.create = function(req, res) {
   var signUpStrategy = passport.authenticate('local-signup', {
     successRedirect: '/users/calendar',
-    failureRedirect: 'signup',
+    failureRedirect: '/users/restricted',
     failureFlash: true
   });
 
