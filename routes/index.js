@@ -8,15 +8,6 @@ var bodyParser    = require('body-parser');
 var mongoose = require('mongoose');
 var profileController = require('../controllers/profile_controller.js');
 
-//node mailer variable used in the send route
-var smtpTransport = nodemailer.createTransport("SMTP",{
-    service: "Gmail",
-    auth: {
-        user: "blackhattest99@gmail.com", //these should be replaced with the email that is going to be used
-        pass: "blackhattingaround1"
-    }
-});
-
 
 
 /* GET home page. */
@@ -32,9 +23,6 @@ router.route('/instructorlist')
 .post(instructorController.create)
 //.put(usersController.update)
 
-//slick way to just see all the instructors listed
-router.route('/showinstructorlist')
-.get(instructorController.show)
 
 
 router.route('/:email')

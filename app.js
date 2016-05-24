@@ -10,11 +10,7 @@ var passport      = require('passport');
 var db            = require('./config/db');
 var flash         = require('connect-flash');
 var app           = express();
-var instructorsList  = require('./routes/instructor');
 
-//this is the nodemailer require
-var nodemailer = require("nodemailer");
-var nodemailerserver =require('./server.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,13 +41,11 @@ app.use(passport.session());
 
 
 // Routes
-var calendarRoute   = require('./routes/calendar');
 var userRoutes      = require('./routes/user');
 
 app.get('/', function(req, res, next) {
   res.render('index', { title: 'Project 3' });
 });
-app.use('/users/calendar', calendarRoute);
 app.use('/users', userRoutes);
 
 // catch 404 and forward to error handler
